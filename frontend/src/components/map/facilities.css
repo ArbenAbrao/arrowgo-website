@@ -1,0 +1,24 @@
+@keyframes fac-float { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(-6deg); } }
+@keyframes fac-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-20px) scale(1.15); } }
+@keyframes fac-shine { from { transform: translateX(-120%) skewX(-20deg); } to { transform: translateX(260%) skewX(-20deg); } }
+@keyframes fac-zoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+@keyframes fac-marquee { to { transform: translateX(-50%); } }
+
+.fac-section { background: radial-gradient(1200px 500px at 80% -10%, rgba(63,154,36,.18), transparent 60%), linear-gradient(180deg, #0f1f5c 0%, #0a1640 100%); }
+.fac-grid-bg { background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+.fac-orb { animation: fac-orb 12s ease-in-out infinite; }
+.fac-card { transform-style: preserve-3d; transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition: transform .25s ease-out, box-shadow .3s; will-change: transform; }
+.fac-card:hover { box-shadow: 0 30px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(110,231,183,.35); }
+.fac-spot { background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.16), transparent 60%); opacity: 0; transition: opacity .3s; }
+.fac-card:hover .fac-spot { opacity: 1; }
+.fac-shine { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.fac-shine::after { content: ""; position: absolute; top: 0; bottom: 0; width: 35%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent); transform: translateX(-120%) skewX(-20deg); }
+.fac-card:hover .fac-shine::after { animation: fac-shine 1s ease; }
+.fac-logo { animation: fac-float 6s ease-in-out infinite; }
+.fac-img { animation: fac-zoom 14s ease-in-out infinite alternate; }
+.fac-marquee { animation: fac-marquee 28s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fac-orb, .fac-logo, .fac-img, .fac-marquee, .fac-card:hover .fac-shine::after { animation: none !important; }
+  .fac-card { transform: none !important; transition: none; }
+}

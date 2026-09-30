@@ -1,0 +1,24 @@
+@keyframes cl-left { to { transform: translateX(-50%); } }
+@keyframes cl-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes cl-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px,-18px) scale(1.12); } }
+
+.cl-section { background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 45%, #f4f8ff 100%); }
+.cl-orb { animation: cl-orb 12s ease-in-out infinite; }
+.cl-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.cl-track { display: flex; width: max-content; gap: 1.25rem; animation: cl-left var(--dur, 40s) linear infinite; }
+.cl-track.reverse { animation-name: cl-right; }
+.cl-row:hover .cl-track { animation-play-state: paused; }
+
+.cl-tile { transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s, border-color .3s; }
+.cl-tile:hover { transform: translateY(-6px) scale(1.04); border-color: rgba(35,80,208,.4); box-shadow: 0 20px 36px -18px rgba(26,53,148,.45); }
+.cl-logo { filter: grayscale(1); opacity: .65; transition: filter .3s, opacity .3s; }
+.cl-tile:hover .cl-logo { filter: none; opacity: 1; }
+.cl-mono { transition: transform .4s; }
+.cl-tile:hover .cl-mono { transform: rotate(-8deg) scale(1.1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .cl-orb { animation: none !important; }
+  .cl-track { animation: none !important; flex-wrap: wrap; justify-content: center; width: auto; }
+  .cl-dup { display: none; }
+  .cl-mask { -webkit-mask-image: none; mask-image: none; }
+}

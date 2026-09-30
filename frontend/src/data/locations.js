@@ -1,0 +1,7 @@
+// PLACEHOLDER directory - replace with the single approved location directory.
+export const fallbackLocations = [
+  { id: "sample-bulacan", name: "SAMPLE Hub - Bulacan", region: "Luzon", lat: 14.85, lng: 120.81, address: "PLACEHOLDER", services: ["warehousing", "3pl", "transport"], facilities: ["Warehouse", "Truck gate"] },
+  { id: "sample-manila", name: "SAMPLE Port Hub - Manila", region: "Luzon", lat: 14.59, lng: 120.97, address: "PLACEHOLDER", services: ["lcl-hubs", "transport", "supply-chain"], facilities: ["LCL collection point"] },
+  { id: "sample-cebu", name: "SAMPLE Hub - Cebu", region: "Visayas", lat: 10.31, lng: 123.89, address: "PLACEHOLDER", services: ["warehousing", "cold-chain", "temperature-controlled"], facilities: ["Cold room", "Warehouse"] },
+  { id: "sample-davao", name: "SAMPLE Hub - Davao", region: "Mindanao", lat: 7.19, lng: 125.46, address: "PLACEHOLDER", services: ["3pl", "transport", "on-demand"], facilities: ["Warehouse", "Transport bay"] },
+];

@@ -1,0 +1,29 @@
+@keyframes island-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pulse-ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(3.4); opacity: 0; } }
+@keyframes flow { to { stroke-dashoffset: -28; } }
+@keyframes marker-pop { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes card-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes label-in { from { opacity: 0; } to { opacity: 1; } }
+
+.map-island { opacity: 0; animation: island-in .9s ease-out forwards; transition: fill .3s; }
+.map-island:hover { fill: #dfe8ff; }
+.map-marker { transform-box: fill-box; transform-origin: center; animation: marker-pop .5s cubic-bezier(.3,1.6,.5,1) backwards; outline: none; }
+.map-marker .dot { transition: r .25s ease, fill .25s ease; }
+.map-marker:hover .dot, .map-marker:focus-visible .dot { fill: #3f9a24; }
+.map-marker:focus-visible .focus-ring { opacity: 1; }
+.focus-ring { opacity: 0; transition: opacity .2s; }
+.pulse { transform-box: fill-box; transform-origin: center; animation: pulse-ring 2.2s ease-out infinite; }
+.route { stroke-dasharray: 5 9; animation: flow 1.4s linear infinite; }
+.map-label { animation: label-in .6s ease .9s backwards; pointer-events: none; }
+.card-in { animation: card-in .45s ease-out; }
+.fade-up { animation: fade-up .7s ease-out backwards; }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.list-item { transition: background-color .2s, padding-left .2s; }
+.list-item:hover { padding-left: 1.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .map-island, .map-marker, .pulse, .route, .map-label, .card-in, .fade-up { animation: none !important; opacity: 1; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}

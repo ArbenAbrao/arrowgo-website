@@ -1,0 +1,10 @@
+export const services = [
+  { slug: "warehousing", name: "Warehousing", need: "Space to store goods safely and close to your customers.", solution: "Secure, managed storage with inventory handling.", coverage: "Selected Philippine hubs" },
+  { slug: "3pl", name: "Third-party logistics (3PL)", need: "Hand off day-to-day logistics without building your own team.", solution: "Outsourced storage, handling and fulfilment under one partner.", coverage: "Selected Philippine hubs" },
+  { slug: "supply-chain", name: "Supply chain management", need: "One view of goods moving from supplier to shelf.", solution: "Planning and coordination across every leg of the chain.", coverage: "Nationwide network" },
+  { slug: "cold-chain", name: "Cold chain management", need: "Keep perishable goods within the right temperature range.", solution: "Temperature-controlled handling from pickup to delivery.", coverage: "Selected cold facilities" },
+  { slug: "temperature-controlled", name: "Temperature-controlled facilities", need: "Storage that holds a set temperature.", solution: "Cold rooms and controlled areas for sensitive goods.", coverage: "Selected cold facilities" },
+  { slug: "transport", name: "Transport & distribution", need: "Move goods by land, sea or air.", solution: "Multimodal freight and last-mile distribution.", coverage: "Nationwide network" },
+  { slug: "lcl-hubs", name: "LCL collection hubs", need: "Ship less than a full container.", solution: "Collection points that consolidate smaller loads.", coverage: "Port-side hubs" },
+  { slug: "on-demand", name: "On-demand bookings", need: "Flexible capacity when you need it.", solution: "Service capability overview only in this phase.", coverage: "Selected areas" },
+];

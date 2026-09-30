@@ -1,0 +1,32 @@
+@keyframes sol-float { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-9px) rotate(-4deg); } }
+@keyframes sol-shine { from { transform: translateX(-130%) skewX(-20deg); } to { transform: translateX(300%) skewX(-20deg); } }
+@keyframes sol-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(26px,-22px) scale(1.12); } }
+@keyframes sol-dots { to { background-position: 40px 40px; } }
+@keyframes sol-zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+.sol-section { background: linear-gradient(180deg, #dbe7ff 0%, #f3f7ff 16%, #ffffff 55%, #f4f8ff 100%); }
+.sol-orb { animation: sol-orb 13s ease-in-out infinite; }
+.sol-dots { background-image: radial-gradient(rgba(35,80,208,.25) 1.2px, transparent 1.4px); background-size: 40px 40px; animation: sol-dots 16s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 20%, #000 20%, transparent 70%); mask-image: radial-gradient(ellipse at 50% 20%, #000 20%, transparent 70%); }
+
+.sol-card { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
+.sol-card:hover { transform: translateY(-8px); border-color: rgba(35,80,208,.4); box-shadow: 0 30px 50px -24px rgba(26,53,148,.45), 0 0 0 1px rgba(35,80,208,.18); }
+.sol-spot { background: radial-gradient(300px circle at var(--mx,50%) var(--my,50%), rgba(35,80,208,.10), transparent 60%); opacity: 0; transition: opacity .3s; }
+.sol-card:hover .sol-spot { opacity: 1; }
+.sol-shine { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.sol-shine::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: translateX(-130%) skewX(-20deg); }
+.sol-card:hover .sol-shine::after { animation: sol-shine .9s ease; }
+
+.sol-img-dots { background-image: radial-gradient(rgba(255,255,255,.22) 1.2px, transparent 1.4px); background-size: 22px 22px; }
+.sol-logo { animation: sol-float 6s ease-in-out infinite; transition: opacity .4s, filter .4s; }
+.sol-card:hover .sol-logo { opacity: .9; filter: drop-shadow(0 0 18px rgba(125,195,90,.7)); }
+.sol-photo { animation: sol-zoom 14s ease-in-out infinite alternate; }
+.sol-link .sol-arrow { display: inline-block; transition: transform .25s; }
+.sol-link:hover .sol-arrow, .sol-card:hover .sol-arrow { transform: translateX(6px); }
+.sol-bar { transform: scaleX(0); transform-origin: left; transition: transform .5s ease; }
+.sol-card:hover .sol-bar { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .sol-orb, .sol-dots, .sol-logo, .sol-photo, .sol-card:hover .sol-shine::after { animation: none !important; }
+  .sol-card, .sol-card:hover { transform: none; transition: none; }
+}

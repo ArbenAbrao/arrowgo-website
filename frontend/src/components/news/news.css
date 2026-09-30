@@ -1,0 +1,29 @@
+@keyframes nw-shine { from { transform: translateX(-130%) skewX(-20deg); } to { transform: translateX(300%) skewX(-20deg); } }
+@keyframes nw-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(24px,-20px) scale(1.12); } }
+@keyframes nw-dots { to { background-position: 36px 36px; } }
+@keyframes nw-pop { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: none; } }
+
+.nw-section { background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%); }
+.nw-orb { animation: nw-orb 13s ease-in-out infinite; }
+.nw-dots { background-image: radial-gradient(rgba(35,80,208,.22) 1.2px, transparent 1.4px); background-size: 36px 36px; animation: nw-dots 16s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse at 20% 10%, #000 15%, transparent 65%); mask-image: radial-gradient(ellipse at 20% 10%, #000 15%, transparent 65%); }
+.nw-img-dots { background-image: radial-gradient(rgba(255,255,255,.22) 1.2px, transparent 1.4px); background-size: 22px 22px; }
+
+.nw-card { position: relative; transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s; }
+.nw-card:hover { transform: translateY(-6px); box-shadow: 0 28px 48px -24px rgba(26,53,148,.45); border-color: rgba(35,80,208,.35); }
+.nw-img { transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+.nw-card:hover .nw-img { transform: scale(1.08); }
+.nw-shine { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.nw-shine::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent); transform: translateX(-130%) skewX(-20deg); }
+.nw-card:hover .nw-shine::after { animation: nw-shine .9s ease; }
+.nw-arrow { display: inline-block; transition: transform .25s; }
+.nw-card:hover .nw-arrow, .nw-link:hover .nw-arrow { transform: translateX(6px); }
+.nw-title { background-image: linear-gradient(90deg, #2350d0, #3f9a24); background-size: 0% 2px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .5s ease; }
+.nw-card:hover .nw-title { background-size: 100% 2px; }
+.nw-pop { animation: nw-pop .5s cubic-bezier(.2,.8,.2,1) backwards; }
+.nw-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 50; transform-origin: left; transform: scaleX(0); background: linear-gradient(90deg, #2350d0, #3f9a24); }
+
+@media (prefers-reduced-motion: reduce) {
+  .nw-orb, .nw-dots, .nw-pop, .nw-card:hover .nw-shine::after { animation: none !important; }
+  .nw-card, .nw-card:hover, .nw-card:hover .nw-img { transform: none; transition: none; }
+}

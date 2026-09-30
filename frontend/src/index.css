@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white text-brand-ink font-sans antialiased; }
+
+:focus-visible { outline: 2px solid #2350d0; outline-offset: 3px; }
+
+/* ---------- Hero ---------- */
+.hero-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(26, 53, 148, 0.10) 1px, transparent 0);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 50%, #000 20%, transparent 75%);
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-rise { animation: hero-rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; animation-delay: var(--d, 0s); }
+
+@keyframes need-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+.need-fade { animation: need-fade 0.5s ease both; }
+
+/* ---------- Globe ---------- */
+.route-base { stroke: #2350d0; stroke-opacity: 0.25; stroke-width: 1; transition: stroke-opacity 0.4s, stroke-width 0.4s; }
+.route-on .route-base { stroke-opacity: 0.8; stroke-width: 1.4; }
+
+/* travelling pulse along each route (pathLength=100 on the element) */
+.route-flow { stroke: #3f9a24; stroke-width: 2; stroke-dasharray: 6 94; stroke-opacity: 0; }
+.globe-live .route-flow { stroke-opacity: 0.55; animation: route-flow 3.2s linear infinite; }
+.globe-live .route-on .route-flow { stroke-opacity: 1; }
+@keyframes route-flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+
+/* pulse rings on service nodes */
+.node-ring { transform-box: fill-box; transform-origin: center; opacity: 0; }
+.globe-live .node-ring { animation: node-ring 2.6s ease-out infinite; }
+@keyframes node-ring {
+  0%   { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(3);   opacity: 0; }
+}
+
+.hub-node { cursor: pointer; outline: none; }
+.hub-node:focus-visible .hub-core { stroke: #1a3594; stroke-width: 2.5; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-rise, .need-fade { animation: none; }
+  .globe-live .route-flow, .globe-live .node-ring { animation: none; }
+}
