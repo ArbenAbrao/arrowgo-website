@@ -1,29 +1,50 @@
 @keyframes island-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes pulse-ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(3.4); opacity: 0; } }
+@keyframes ring-soft { 0% { transform: scale(1); opacity: .28; } 100% { transform: scale(2.6); opacity: 0; } }
 @keyframes flow { to { stroke-dashoffset: -28; } }
 @keyframes marker-pop { 0% { transform: scale(0); opacity: 0; } 70% { transform: scale(1.25); } 100% { transform: scale(1); opacity: 1; } }
 @keyframes card-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: none; } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes label-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes loc-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(26px,-22px) scale(1.12); } }
+@keyframes loc-dots { to { background-position: 40px 40px; } }
+@keyframes bar-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes scan { 0% { transform: translateY(-10%); opacity: 0; } 15% { opacity: .8; } 100% { transform: translateY(1100%); opacity: 0; } }
+@keyframes tab-in { from { opacity: 0; transform: translateY(6px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes live-dot { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.8); opacity: 0; } }
 
 .map-island { opacity: 0; animation: island-in .9s ease-out forwards; transition: fill .3s; }
 .map-island:hover { fill: #dfe8ff; }
-.map-marker { transform-box: fill-box; transform-origin: center; animation: marker-pop .5s cubic-bezier(.3,1.6,.5,1) backwards; outline: none; }
+.map-marker { transform-origin: 0 0; animation: marker-pop .5s cubic-bezier(.3,1.6,.5,1) backwards; outline: none; }
+.map-ms { transform: scale(var(--ms, 1)); transform-origin: 0 0; }
 .map-marker .dot { transition: r .25s ease, fill .25s ease; }
 .map-marker:hover .dot, .map-marker:focus-visible .dot { fill: #3f9a24; }
 .map-marker:focus-visible .focus-ring { opacity: 1; }
 .focus-ring { opacity: 0; transition: opacity .2s; }
 .pulse { transform-box: fill-box; transform-origin: center; animation: pulse-ring 2.2s ease-out infinite; }
+.ring-soft { transform-box: fill-box; transform-origin: center; animation: ring-soft 3.4s ease-out infinite; }
 .route { stroke-dasharray: 5 9; animation: flow 1.4s linear infinite; }
 .map-label { animation: label-in .6s ease .9s backwards; pointer-events: none; }
+.map-scan { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(35,80,208,.5), transparent); animation: scan 3.2s ease-in-out .4s 1 both; pointer-events: none; }
+.live-dot::after { content: ""; position: absolute; inset: 0; border-radius: 999px; background: #3f9a24; animation: live-dot 2s ease-out infinite; }
+
 .card-in { animation: card-in .45s ease-out; }
 .fade-up { animation: fade-up .7s ease-out backwards; }
+.tab-in { animation: tab-in .4s ease-out backwards; }
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.visible { opacity: 1; transform: none; }
 .list-item { transition: background-color .2s, padding-left .2s; }
 .list-item:hover { padding-left: 1.5rem; }
+.bar-grow { transform-origin: left; animation: bar-grow .9s cubic-bezier(.2,.8,.2,1) backwards; }
+
+.loc-section { background: linear-gradient(180deg, #f4f8ff 0%, #f8fafc 40%, #eef3ff 100%); }
+.loc-orb { animation: loc-orb 13s ease-in-out infinite; }
+.loc-dots { background-image: radial-gradient(rgba(35,80,208,.22) 1.2px, transparent 1.4px); background-size: 40px 40px; animation: loc-dots 16s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 15%, transparent 65%); mask-image: radial-gradient(ellipse at 70% 20%, #000 15%, transparent 65%); }
+.loc-card { transition: box-shadow .4s, border-color .4s; }
+.loc-card:hover { box-shadow: 0 30px 50px -28px rgba(26,53,148,.45); border-color: rgba(35,80,208,.3); }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-island, .map-marker, .pulse, .route, .map-label, .card-in, .fade-up { animation: none !important; opacity: 1; }
+  .map-island, .map-marker, .pulse, .ring-soft, .route, .map-label, .map-scan, .live-dot::after, .card-in, .fade-up, .tab-in, .bar-grow, .loc-orb, .loc-dots { animation: none !important; opacity: 1; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }

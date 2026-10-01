@@ -1,24 +1,42 @@
-@keyframes fac-float { 0%,100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(-6deg); } }
-@keyframes fac-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(30px,-20px) scale(1.15); } }
-@keyframes fac-shine { from { transform: translateX(-120%) skewX(-20deg); } to { transform: translateX(260%) skewX(-20deg); } }
-@keyframes fac-zoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+/* Facilities - light, premium */
+@keyframes fac-orb { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(28px,-22px) scale(1.12); } }
+@keyframes fac-shine { from { transform: translateX(-130%) skewX(-20deg); } to { transform: translateX(300%) skewX(-20deg); } }
+@keyframes fac-zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 @keyframes fac-marquee { to { transform: translateX(-50%); } }
+@keyframes fac-dots { to { background-position: 40px 40px; } }
 
-.fac-section { background: radial-gradient(1200px 500px at 80% -10%, rgba(63,154,36,.18), transparent 60%), linear-gradient(180deg, #0f1f5c 0%, #0a1640 100%); }
-.fac-grid-bg { background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 48px 48px; -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
-.fac-orb { animation: fac-orb 12s ease-in-out infinite; }
-.fac-card { transform-style: preserve-3d; transform: perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition: transform .25s ease-out, box-shadow .3s; will-change: transform; }
-.fac-card:hover { box-shadow: 0 30px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(110,231,183,.35); }
-.fac-spot { background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.16), transparent 60%); opacity: 0; transition: opacity .3s; }
+.fac-section { background:
+  radial-gradient(900px 420px at 88% 0%, rgba(35,80,208,.10), transparent 60%),
+  radial-gradient(700px 420px at 0% 100%, rgba(63,154,36,.09), transparent 60%),
+  linear-gradient(180deg, #eef3ff 0%, #ffffff 48%, #f8fafc 100%); }
+.fac-dots { background-image: radial-gradient(rgba(35,80,208,.22) 1.2px, transparent 1.4px); background-size: 40px 40px; animation: fac-dots 16s linear infinite;
+  -webkit-mask-image: radial-gradient(ellipse at 20% 10%, #000 15%, transparent 65%); mask-image: radial-gradient(ellipse at 20% 10%, #000 15%, transparent 65%); }
+.fac-orb { animation: fac-orb 13s ease-in-out infinite; }
+
+.fac-card { transform-style: preserve-3d; transform: perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)); transition: transform .3s ease-out, box-shadow .4s; will-change: transform; }
+.fac-card:hover { box-shadow: 0 40px 70px -28px rgba(26,53,148,.55), 0 0 0 1px rgba(35,80,208,.18); }
+.fac-img { animation: fac-zoom 18s ease-in-out infinite alternate; }
+.fac-card:hover .fac-img { animation-duration: 7s; }
+.fac-spot { background: radial-gradient(340px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.28), transparent 60%); opacity: 0; transition: opacity .3s; }
 .fac-card:hover .fac-spot { opacity: 1; }
 .fac-shine { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.fac-shine::after { content: ""; position: absolute; top: 0; bottom: 0; width: 35%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.22), transparent); transform: translateX(-120%) skewX(-20deg); }
+.fac-shine::after { content: ""; position: absolute; top: 0; bottom: 0; width: 30%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent); transform: translateX(-130%) skewX(-20deg); }
 .fac-card:hover .fac-shine::after { animation: fac-shine 1s ease; }
-.fac-logo { animation: fac-float 6s ease-in-out infinite; }
-.fac-img { animation: fac-zoom 14s ease-in-out infinite alternate; }
-.fac-marquee { animation: fac-marquee 28s linear infinite; }
+.fac-panel { transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s, background-color .45s; box-shadow: 0 16px 36px -18px rgba(26,53,148,.4); }
+.fac-card:hover .fac-panel { transform: translateY(-8px); background-color: rgba(255,255,255,.95); box-shadow: 0 26px 50px -20px rgba(26,53,148,.5); }
+
+.fac-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.fac-track { display: flex; width: max-content; gap: 1.25rem; animation: fac-marquee 55s linear infinite; }
+.fac-row:hover .fac-track { animation-play-state: paused; }
+.fac-tile img { transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.fac-tile:hover img { transform: scale(1.12); }
+.fac-tile { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s; }
+.fac-tile:hover { transform: translateY(-6px); box-shadow: 0 24px 40px -20px rgba(26,53,148,.5); }
 
 @media (prefers-reduced-motion: reduce) {
-  .fac-orb, .fac-logo, .fac-img, .fac-marquee, .fac-card:hover .fac-shine::after { animation: none !important; }
-  .fac-card { transform: none !important; transition: none; }
+  .fac-orb, .fac-dots, .fac-img, .fac-track, .fac-card:hover .fac-shine::after { animation: none !important; }
+  .fac-card, .fac-card:hover, .fac-panel, .fac-card:hover .fac-panel, .fac-tile, .fac-tile:hover { transform: none !important; transition: none; }
+  .fac-track { flex-wrap: wrap; justify-content: center; width: auto; }
+  .fac-dup { display: none; }
+  .fac-mask { -webkit-mask-image: none; mask-image: none; }
 }
